@@ -1,0 +1,4 @@
+# Scripts target bash 3.2 (macOS) and newer.
+shell=bash
+# SC1091: do not try to follow sourced files (test helper is resolved at runtime).
+disable=SC1091
