@@ -1,0 +1,4 @@
+# Local test artifacts
+/test/.tmp/
+/.bats/
+*.bak-*
