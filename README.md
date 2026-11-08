@@ -51,8 +51,8 @@ unreadable, the session continues.
 ## Requirements
 
 - Claude Code 2.1 or newer, logged in with a claude.ai **Pro, Max or Ultra**
-  subscription. (Team and Enterprise plans are not yet supported; the
-  `rate_limits` field is not guaranteed to be present for them.)
+  subscription. Claude Code sends `rate_limits` only for these plans, so Team
+  and Enterprise plans are not supported.
 - macOS or Linux, `bash` 3.2 or newer.
 - [`jq`](https://jqlang.github.io/jq/) 1.6 or newer (`brew install jq`,
   `sudo apt-get install jq`).
@@ -122,6 +122,11 @@ The session ends with the `stopReason` shown above. To continue working:
 
 ## Known limitations
 
+- Each window in `rate_limits` can be absent. Verified **Ultra** accounts have
+  no 5-hour limit, so Claude Code sends only `seven_day` and the guard
+  effectively watches the 7-day window alone. Pro and Max accounts receive
+  both windows. `spend_limit` appears only behind a Claude apps gateway that
+  sets a spend limit. The status line shows whichever windows are present.
 - Usage is only recorded while an interactive terminal session (`claude`) is
   running, because only the status line receives `rate_limits`. Non-interactive
   runs (`claude -p`) and the desktop app do not update the state file. The
