@@ -27,11 +27,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Install bats-core
-        run: git clone --quiet --depth 1 --branch v1.11.1 https://github.com/bats-core/bats-core.git "$RUNNER_TEMP/bats-core"
+        run: |
+          git clone --quiet --depth 1 --branch v1.11.1 https://github.com/bats-core/bats-core.git "$RUNNER_TEMP/bats-core"
       - name: Show tool versions
         run: |
           /bin/bash --version | head -n 1
           jq --version
           "$RUNNER_TEMP/bats-core/bin/bats" --version
       - name: Run tests
-        run: "$RUNNER_TEMP/bats-core/bin/bats" --print-output-on-failure test
+        run: |
+          "$RUNNER_TEMP/bats-core/bin/bats" --print-output-on-failure test
